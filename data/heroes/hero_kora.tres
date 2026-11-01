@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="HeroData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/HeroData.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/weapons/shotgun.tres" id="2_weapon"]
+[ext_resource type="Texture2D" path="res://assets/sprites/hero_kora.png" id="3_sprite"]
+
+[resource]
+script = ExtResource("1_script")
+id = "kora"
+name = "Kora"
+title = "Enforcer"
+hp = 140.0
+speed = 185.0
+starting_weapon = ExtResource("2_weapon")
+passive_description = "+30% Damage & Heavy Armor"
+passive_type = "damage_bonus"
+passive_value = 0.3
+sprite = ExtResource("3_sprite")
+unlock_type = "boss_kills"
+unlock_requirement = 1
+unlock_description = "Defeat 1 boss"

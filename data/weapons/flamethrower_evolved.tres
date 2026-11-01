@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://data/WeaponData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bullet_inferno.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/audio/shoot_inferno.wav" id="3_sound"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_evo_inferno.png" id="4_icon"]
+
+[resource]
+script = ExtResource("1_script")
+id = "flamethrower_evolved"
+name = "Inferno Breath"
+damage = 22.0
+fire_rate = 18.0
+speed = 420.0
+hp = 0.0
+spread_angle = 45.0
+pellets = 1
+pierce = 999
+bullet_color = Color(1, 0.2, 0.6, 1)
+sprite = ExtResource("2_sprite")
+sound = ExtResource("3_sound")
+card_icon = ExtResource("4_icon")
+max_level = 1
+damage_per_level = 0.0
+fire_rate_per_level = 0.0
+pellets_per_level = 0
+pierce_per_level = 0
+is_evolved = true
+evolution_id = ""
+bullet_lifetime = 0.65
+is_flame = true
+is_bolt = false
+bolt_stick_duration = 0.5
+is_grenade = false
+explosion_radius = 125.0
+arc_height = 50.0

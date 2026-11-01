@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EliteData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/EliteData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+elite_chance = 0.12
+hp_multiplier = 3.0
+speed_multiplier = 1.1
+souls_multiplier = 3
+crate_drop_chance = 0.20
+elite_color = Color(1, 0.2, 0.85, 1)
+scale_multiplier = 1.3

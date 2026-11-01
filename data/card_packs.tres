@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardPackData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/CardPackData.gd" id="1_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/card_pack_open.wav" id="2_pack_sound"]
+[ext_resource type="AudioStream" path="res://assets/audio/card_reveal.wav" id="3_reveal_sound"]
+
+[resource]
+script = ExtResource("1_script")
+pack_price = 150
+cards_per_pack = 3
+rarity_weights = {
+"Common": 65.0,
+"Epic": 10.0,
+"Rare": 25.0
+}
+boss_card_drop_chance = 0.5
+pack_sound = ExtResource("2_pack_sound")
+reveal_sound = ExtResource("3_reveal_sound")

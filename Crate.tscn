@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Crate.gd" id="1_crate_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/crate.png" id="2_crate_tex"]
+[ext_resource type="Texture2D" path="res://assets/sprites/light_mask.png" id="3_light_tex"]
+[ext_resource type="AudioStream" path="res://assets/audio/crate_land.wav" id="4_land_snd"]
+[ext_resource type="Texture2D" path="res://assets/sprites/particle_dust.png" id="5_dust_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 28.0
+
+[node name="Crate" type="Area2D" groups=["crates"]]
+collision_layer = 8
+collision_mask = 1
+script = ExtResource("1_crate_script")
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.3)
+position = Vector2(0, 6)
+scale = Vector2(0.2, 0.1)
+texture = ExtResource("2_crate_tex")
+
+[node name="CrateSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -500)
+texture = ExtResource("2_crate_tex")
+
+[node name="BeaconLight" type="PointLight2D" parent="."]
+color = Color(0.2, 0.85, 1, 1)
+energy = 0.0
+texture = ExtResource("3_light_tex")
+texture_scale = 0.9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_land_snd")
+bus = &"SFX"
+
+[node name="LandingDust" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 14
+lifetime = 0.45
+one_shot = true
+explosiveness = 0.9
+texture = ExtResource("5_dust_tex")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 120.0
+scale_amount_min = 0.5
+scale_amount_max = 1.3
+color = Color(0.2, 0.85, 1, 0.85)

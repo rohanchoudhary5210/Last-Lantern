@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/CardData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/card_icons/max_hp.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_script")
+id = "max_hp"
+name = "Vitality Core"
+description = "+20 Max HP per level"
+rarity = "Common"
+icon = ExtResource("2_icon")
+stat_modifiers = {
+"max_hp": 20.0
+}
+max_level = 5

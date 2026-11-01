@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/WeaponData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bullet.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/audio/shoot.wav" id="3_sound"]
+
+[resource]
+script = ExtResource("1_script")
+id = "pistol"
+name = "Pistol"
+damage = 25.0
+fire_rate = 2.2
+speed = 700.0
+hp = 0.0
+spread_angle = 0.0
+pellets = 1
+pierce = 0
+bullet_color = Color(1, 0.85, 0.2, 1)
+sprite = ExtResource("2_sprite")
+sound = ExtResource("3_sound")
+max_level = 5
+damage_per_level = 7.0
+fire_rate_per_level = 0.5
+pellets_per_level = 0
+pierce_per_level = 0
+is_evolved = false
+evolution_id = "evo_sunburst"

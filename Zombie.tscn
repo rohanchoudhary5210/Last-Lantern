@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Zombie.gd" id="1_zombie_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/zombie_walker.png" id="2_zombie_tex"]
+[ext_resource type="Texture2D" path="res://assets/sprites/light_mask.png" id="3_light_tex"]
+[ext_resource type="Texture2D" path="res://assets/sprites/particle_splat.png" id="4_splat_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 16.0
+
+[node name="Zombie" type="CharacterBody2D" groups=["zombies"]]
+collision_layer = 2
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_zombie_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_zombie_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="EyesLight" type="PointLight2D" parent="."]
+position = Vector2(0, -12)
+color = Color(0.1, 1, 0.35, 1)
+energy = 1.8
+texture = ExtResource("3_light_tex")
+texture_scale = 0.25
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="DeathParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 18
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("4_splat_tex")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 160.0
+scale_amount_min = 0.6
+scale_amount_max = 1.2

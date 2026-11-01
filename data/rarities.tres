@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RarityData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/RarityData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+common_name = "Common"
+common_color = Color(0.8, 0.8, 0.8, 1)
+common_multiplier = 1.0
+rare_name = "Rare"
+rare_color = Color(0.2, 0.75, 1, 1)
+rare_multiplier = 1.35
+epic_name = "Epic"
+epic_color = Color(0.85, 0.3, 1, 1)
+epic_multiplier = 1.75
+rare_chance = 0.35
+epic_chance = 0.15

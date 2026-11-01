@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EvolutionData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/EvolutionData.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/weapons/rifle_evolved.tres" id="2_wep"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_evo_railgun.png" id="3_icon"]
+
+[resource]
+script = ExtResource("1_script")
+id = "evo_railgun"
+name = "Valkyrie Railgun"
+description = "Rifle Lv.5 + Reinforced Plating. Fires relativistic particle beams that pierce all targets."
+base_weapon_id = "rifle"
+required_weapon_level = 5
+required_upgrade_id = "armor"
+evolved_weapon = ExtResource("2_wep")
+icon = ExtResource("3_icon")

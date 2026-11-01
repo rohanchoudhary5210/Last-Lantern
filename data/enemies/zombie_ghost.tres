@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/EnemyData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/zombie_ghost.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/audio/zombie_die.wav" id="3_sound"]
+
+[resource]
+script = ExtResource("1_script")
+id = "ghost"
+name = "Ghost"
+damage = 18.0
+fire_rate = 1.0
+speed = 105.0
+hp = 32.0
+score_value = 25
+soul_value = 3
+sprite = ExtResource("2_sprite")
+sound = ExtResource("3_sound")
+is_ranged = false
+is_boss = false
+drops_crate = false
+is_exploder = false
+is_charger = false
+is_summoner = false
+is_ghost = true
+passes_through_enemies = true
+invisible_in_darkness = true

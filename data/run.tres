@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RunData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/RunData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+dawn_time = 300.0
+dawn_souls_bonus = 50
+dawn_title = "DAWN BREAKS"
+dawn_subtitle = "You survived 5 minutes until sunrise!"
+max_enemies = 150

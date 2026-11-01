@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://data/EnemyData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/zombie_summoner.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/audio/summon.wav" id="3_sound"]
+[ext_resource type="Resource" path="res://data/enemies/zombie_walker.tres" id="4_minion"]
+
+[resource]
+script = ExtResource("1_script")
+id = "summoner"
+name = "Summoner"
+damage = 10.0
+fire_rate = 1.0
+speed = 65.0
+hp = 50.0
+score_value = 35
+soul_value = 4
+sprite = ExtResource("2_sprite")
+sound = ExtResource("3_sound")
+is_ranged = false
+is_boss = false
+drops_crate = false
+is_exploder = false
+is_charger = false
+is_summoner = true
+summon_interval = 6.0
+summon_count = 2
+summon_max_alive = 6
+summon_enemy_data = ExtResource("4_minion")
+keep_distance = 320.0
+is_ghost = false

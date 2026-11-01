@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="GameFeelData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/GameFeelData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/particle_splat.png" id="2_splat"]
+[ext_resource type="Texture2D" path="res://assets/sprites/particle_dust.png" id="3_dust"]
+
+[resource]
+script = ExtResource("1_script")
+screen_shake_strength = 14.0
+screen_shake_duration = 0.25
+hit_flash_duration = 0.09
+hit_flash_color = Color(3, 3, 3, 1)
+death_particle_count = 18
+death_particle_lifetime = 0.4
+death_particle_speed = 160.0
+death_particle_texture = ExtResource("2_splat")
+damage_number_lifetime = 0.65
+damage_number_float_speed = 75.0
+damage_number_color = Color(1, 0.95, 0.35, 1)
+landing_dust_count = 14
+landing_dust_lifetime = 0.45
+landing_dust_speed = 120.0
+landing_dust_texture = ExtResource("3_dust")
+music_volume_db = -6.0
+sfx_volume_db = 0.0

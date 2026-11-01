@@ -1,0 +1,683 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_menu_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ground_tile.png" id="2_ground_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/card_banner_bg.png" id="3_banner_bg"]
+[ext_resource type="AudioStream" path="res://assets/audio/music.ogg" id="4_music"]
+[ext_resource type="Texture2D" uid="uid://c1svink20s857" path="res://assets/Game Logo.png" id="5_logo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_homecard"]
+bg_color = Color(0.1, 0.12, 0.18, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.9, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.2, 0.9, 1, 0.35)
+shadow_size = 6
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu_script")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.2, 0.25, 0.35, 1)
+texture_repeat = 2
+position = Vector2(360, 640)
+texture = ExtResource("2_ground_tex")
+region_enabled = true
+region_rect = Rect2(-1000, -1000, 3000, 3000)
+
+[node name="DarkOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.05, 0.88)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainVBox" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(580, 0)
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="HeaderBox" type="VBoxContainer" parent="CenterContainer/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Logo" type="TextureRect" parent="CenterContainer/MainVBox/HeaderBox"]
+custom_minimum_size = Vector2(0, 440)
+layout_mode = 2
+texture = ExtResource("5_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SubtitleLabel" type="Label" parent="CenterContainer/MainVBox/HeaderBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+text = "Top-Down Night Survival"
+horizontal_alignment = 1
+
+[node name="RecordsCard" type="Panel" parent="CenterContainer/MainVBox"]
+custom_minimum_size = Vector2(540, 95)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_homecard")
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/MainVBox/RecordsCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="RecordsHBox" type="HBoxContainer" parent="CenterContainer/MainVBox/RecordsCard/Margin"]
+layout_mode = 2
+alignment = 1
+
+[node name="BestTimeBox" type="VBoxContainer" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Tag" type="Label" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox/BestTimeBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "SURVIVAL RECORD"
+horizontal_alignment = 1
+
+[node name="BestTimeVal" type="Label" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox/BestTimeBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="Divider" type="VSeparator" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox"]
+layout_mode = 2
+
+[node name="BestKillsBox" type="VBoxContainer" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Tag" type="Label" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox/BestKillsBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 14
+text = "ZOMBIES SLAIN"
+horizontal_alignment = 1
+
+[node name="BestKillsVal" type="Label" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox/BestKillsBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "0"
+horizontal_alignment = 1
+
+[node name="Divider2" type="VSeparator" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox"]
+layout_mode = 2
+
+[node name="TotalSoulsBox" type="VBoxContainer" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Tag" type="Label" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox/TotalSoulsBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "SOUL BANK"
+horizontal_alignment = 1
+
+[node name="TotalSoulsVal" type="Label" parent="CenterContainer/MainVBox/RecordsCard/Margin/RecordsHBox/TotalSoulsBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "✦ 0"
+horizontal_alignment = 1
+
+[node name="DailyCurseCard" type="Panel" parent="CenterContainer/MainVBox"]
+custom_minimum_size = Vector2(540, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_homecard")
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/MainVBox/DailyCurseCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/MainVBox/DailyCurseCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="CurseTagLabel" type="Label" parent="CenterContainer/MainVBox/DailyCurseCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.45, 0.35, 1)
+theme_override_font_sizes/font_size = 14
+text = "⚡ TODAY'S CURSE: SOLAR ECLIPSE"
+horizontal_alignment = 1
+
+[node name="CurseDescLabel" type="Label" parent="CenterContainer/MainVBox/DailyCurseCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "-35% Torch Radius, but +100% Souls Harvested"
+horizontal_alignment = 1
+
+[node name="ButtonBox" type="VBoxContainer" parent="CenterContainer/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CenterContainer/MainVBox/ButtonBox"]
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "PLAY"
+
+[node name="ShopButton" type="Button" parent="CenterContainer/MainVBox/ButtonBox"]
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "SHOP / UPGRADES"
+
+[node name="CardShopButton" type="Button" parent="CenterContainer/MainVBox/ButtonBox"]
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.88, 0.45, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "CARD SHOP & VAULT"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/MainVBox/ButtonBox"]
+custom_minimum_size = Vector2(280, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "SETTINGS"
+
+[node name="StatsButton" type="Button" parent="CenterContainer/MainVBox/ButtonBox"]
+custom_minimum_size = Vector2(280, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_font_sizes/font_size = 20
+text = "STATS"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/MainVBox/ButtonBox"]
+custom_minimum_size = Vector2(280, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = "QUIT"
+
+[node name="SettingsModal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="SettingsModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.05, 0.92)
+
+[node name="CenterContainer" type="CenterContainer" parent="SettingsModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="SettingsModal/CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Title" type="Label" parent="SettingsModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "AUDIO SETTINGS"
+horizontal_alignment = 1
+
+[node name="MusicBox" type="VBoxContainer" parent="SettingsModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MusicLabel" type="Label" parent="SettingsModal/CenterContainer/VBox/MusicBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 17
+text = "MUSIC VOLUME: 50%"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsModal/CenterContainer/VBox/MusicBox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="SFXBox" type="VBoxContainer" parent="SettingsModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SFXLabel" type="Label" parent="SettingsModal/CenterContainer/VBox/SFXBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 17
+text = "SFX VOLUME: 100%"
+
+[node name="SFXSlider" type="HSlider" parent="SettingsModal/CenterContainer/VBox/SFXBox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SettingsBackBtn" type="Button" parent="SettingsModal/CenterContainer/VBox"]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "BACK"
+
+[node name="ShopModal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="ShopModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.06, 0.95)
+
+[node name="CenterContainer" type="CenterContainer" parent="ShopModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopVBox" type="VBoxContainer" parent="ShopModal/CenterContainer"]
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TitleBox" type="VBoxContainer" parent="ShopModal/CenterContainer/ShopVBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ShopTitle" type="Label" parent="ShopModal/CenterContainer/ShopVBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "THE SOUL FORGE"
+horizontal_alignment = 1
+
+[node name="ShopSubtitle" type="Label" parent="ShopModal/CenterContainer/ShopVBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 15
+text = "Permanent Meta-Upgrades For All Survivors"
+horizontal_alignment = 1
+
+[node name="BalanceLabel" type="Label" parent="ShopModal/CenterContainer/ShopVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_font_sizes/font_size = 20
+text = "AVAILABLE SOULS: ✦ 0"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopModal/CenterContainer/ShopVBox"]
+custom_minimum_size = Vector2(620, 480)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="UpgradesContainer" type="VBoxContainer" parent="ShopModal/CenterContainer/ShopVBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="ShopBackBtn" type="Button" parent="ShopModal/CenterContainer/ShopVBox"]
+custom_minimum_size = Vector2(220, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "BACK TO MENU"
+
+[node name="CardShopModal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="CardShopModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.06, 0.96)
+
+[node name="CenterContainer" type="CenterContainer" parent="CardShopModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardShopVBox" type="VBoxContainer" parent="CardShopModal/CenterContainer"]
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="TitleBox" type="VBoxContainer" parent="CardShopModal/CenterContainer/CardShopVBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="CardShopModal/CenterContainer/CardShopVBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.45, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "CARD SHOP & VAULT"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CardShopModal/CenterContainer/CardShopVBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 15
+text = "Open packs with souls & upgrade collectible cards"
+horizontal_alignment = 1
+
+[node name="BalanceLabel" type="Label" parent="CardShopModal/CenterContainer/CardShopVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_font_sizes/font_size = 20
+text = "AVAILABLE SOULS: ✦ 0"
+horizontal_alignment = 1
+
+[node name="PackBox" type="HBoxContainer" parent="CardShopModal/CenterContainer/CardShopVBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="BuyPackBtn" type="Button" parent="CardShopModal/CenterContainer/CardShopVBox/PackBox"]
+custom_minimum_size = Vector2(300, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "OPEN CARD PACK (✦ 150)"
+
+[node name="PackInfoLabel" type="Label" parent="CardShopModal/CenterContainer/CardShopVBox/PackBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.95, 1)
+theme_override_font_sizes/font_size = 14
+text = "Pack gives 3 Cards
+Duplicates level up powers!"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CardShopModal/CenterContainer/CardShopVBox"]
+custom_minimum_size = Vector2(620, 480)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="CardsContainer" type="VBoxContainer" parent="CardShopModal/CenterContainer/CardShopVBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="CardShopBackBtn" type="Button" parent="CardShopModal/CenterContainer/CardShopVBox"]
+custom_minimum_size = Vector2(220, 46)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "BACK TO MENU"
+
+[node name="RevealModal" type="Control" parent="CardShopModal"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="CardShopModal/RevealModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.01, 0.01, 0.02, 0.95)
+
+[node name="CenterContainer" type="CenterContainer" parent="CardShopModal/RevealModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RevealVBox" type="VBoxContainer" parent="CardShopModal/RevealModal/CenterContainer"]
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="RevealTitle" type="Label" parent="CardShopModal/RevealModal/CenterContainer/RevealVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_font_sizes/font_size = 32
+text = "✦ CARDS ACQUIRED! ✦"
+horizontal_alignment = 1
+
+[node name="RevealCardsHBox" type="HBoxContainer" parent="CardShopModal/RevealModal/CenterContainer/RevealVBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="RevealDoneBtn" type="Button" parent="CardShopModal/RevealModal/CenterContainer/RevealVBox"]
+custom_minimum_size = Vector2(220, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "COLLECT ALL"
+
+[node name="StatsModal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="StatsModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.05, 0.92)
+
+[node name="CenterContainer" type="CenterContainer" parent="StatsModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatsVBox" type="VBoxContainer" parent="StatsModal/CenterContainer"]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="StatsModal/CenterContainer/StatsVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_font_sizes/font_size = 32
+text = "SURVIVAL CAREER STATS"
+horizontal_alignment = 1
+
+[node name="CardPanel" type="PanelContainer" parent="StatsModal/CenterContainer/StatsVBox"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="StatsModal/CenterContainer/StatsVBox/CardPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="Grid" type="VBoxContainer" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="BestTimeRow" type="HBoxContainer" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid/BestTimeRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+text = "BEST SURVIVAL TIME"
+
+[node name="Value" type="Label" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid/BestTimeRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 20
+text = "00:00"
+
+[node name="TotalRunsRow" type="HBoxContainer" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid/TotalRunsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+text = "TOTAL RUNS"
+
+[node name="Value" type="Label" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid/TotalRunsRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="AvgLengthRow" type="HBoxContainer" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid/AvgLengthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+text = "AVERAGE RUN LENGTH"
+
+[node name="Value" type="Label" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid/AvgLengthRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 1, 0.6, 1)
+theme_override_font_sizes/font_size = 20
+text = "00:00"
+
+[node name="FavoriteUpgRow" type="VBoxContainer" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid/FavoriteUpgRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+text = "MOST PICKED UPGRADE"
+
+[node name="Value" type="Label" parent="StatsModal/CenterContainer/StatsVBox/CardPanel/Margin/Grid/FavoriteUpgRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+text = "None"
+autowrap_mode = 2
+
+[node name="StatsBackBtn" type="Button" parent="StatsModal/CenterContainer/StatsVBox"]
+custom_minimum_size = Vector2(240, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "CLOSE"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_music")
+bus = &"Music"
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

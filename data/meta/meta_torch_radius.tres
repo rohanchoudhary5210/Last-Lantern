@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MetaUpgradeData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/MetaUpgradeData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_torch_radius.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_script")
+id = "torch_radius"
+name = "Lantern Radiance"
+description = "+10% Torch Radius per rank"
+stat_type = "torch_radius"
+max_level = 5
+base_price = 12
+price_growth = 1.5
+bonus_per_level = 0.10
+icon = ExtResource("2_icon")

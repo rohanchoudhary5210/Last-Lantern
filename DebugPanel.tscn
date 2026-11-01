@@ -1,0 +1,210 @@
+[gd_scene format=3 uid="uid://b4iflp2v3n48a"]
+
+[ext_resource type="Script" path="res://DebugPanel.gd" id="1_debug_script"]
+[ext_resource type="Resource" path="res://data/debug_config.tres" id="2_debug_config"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.06, 0.07, 0.11, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.85, 1, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stats"]
+bg_color = Color(0.02, 0.03, 0.05, 0.85)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.12, 0.15, 0.22, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.45, 0.65, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boss"]
+bg_color = Color(0.28, 0.08, 0.12, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.2, 0.35, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="DebugPanel" type="CanvasLayer"]
+layer = 125
+script = ExtResource("1_debug_script")
+debug_config = ExtResource("2_debug_config")
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Overlay"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 416.0
+offset_bottom = 760.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="Overlay/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="Overlay/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="Overlay/PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Overlay/PanelContainer/MarginContainer/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "[ DEBUG OVERLAY ] (F1)"
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Overlay/PanelContainer/MarginContainer/VBox/Header"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 16
+text = "✕"
+
+[node name="StatsBox" type="PanelContainer" parent="Overlay/PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_stats")
+
+[node name="StatsLabel" type="Label" parent="Overlay/PanelContainer/MarginContainer/VBox/StatsBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 1, 0.6, 1)
+theme_override_font_sizes/font_size = 15
+text = "FPS: 60   |   Live Enemies: 0"
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="Overlay/PanelContainer/MarginContainer/VBox"]
+custom_minimum_size = Vector2(370, 580)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="GeneralHeader" type="Label" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.95, 1)
+theme_override_font_sizes/font_size = 13
+text = "— CHEATS & PROGRESSION —"
+
+[node name="GeneralBox" type="VBoxContainer" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="GodModeButton" type="Button" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content/GeneralBox"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "God Mode: [ OFF ]"
+
+[node name="TimeButton" type="Button" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content/GeneralBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "+ 60s Game Time"
+
+[node name="SoulsButton" type="Button" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content/GeneralBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "+ 1000 Souls"
+
+[node name="WeaponLevelButton" type="Button" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content/GeneralBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "Set Weapon Lv. 5"
+
+[node name="CrateButton" type="Button" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content/GeneralBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "Give Airdrop Crate"
+
+[node name="SpawningHeader" type="Label" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.95, 1)
+theme_override_font_sizes/font_size = 13
+text = "— SPAWN ENTITIES —"
+
+[node name="SpawningBox" type="VBoxContainer" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BossButton" type="Button" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content/SpawningBox"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.35, 0.45, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_boss")
+text = "✦ Spawn Boss Now ✦"
+
+[node name="EnemyButtonsGrid" type="GridContainer" parent="Overlay/PanelContainer/MarginContainer/VBox/Scroll/Content/SpawningBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="QuickToggleBtn" type="Button" parent="."]
+offset_left = 644.0
+offset_top = 10.0
+offset_right = 708.0
+offset_bottom = 44.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0.9, 1, 0.8)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "[DBG]"

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://data/WeaponData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bullet_grenade.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/audio/shoot_grenade.wav" id="3_sound"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_grenade_launcher.png" id="4_icon"]
+
+[resource]
+script = ExtResource("1_script")
+id = "grenade_launcher"
+name = "Grenade Launcher"
+damage = 70.0
+fire_rate = 1.1
+speed = 460.0
+hp = 0.0
+spread_angle = 0.0
+pellets = 1
+pierce = 0
+bullet_color = Color(0.3, 1, 0.45, 1)
+sprite = ExtResource("2_sprite")
+sound = ExtResource("3_sound")
+card_icon = ExtResource("4_icon")
+max_level = 5
+damage_per_level = 20.0
+fire_rate_per_level = 0.25
+pellets_per_level = 0
+pierce_per_level = 0
+is_evolved = false
+evolution_id = ""
+bullet_lifetime = 1.6
+is_flame = false
+is_bolt = false
+bolt_stick_duration = 0.5
+is_grenade = true
+explosion_radius = 125.0
+arc_height = 50.0

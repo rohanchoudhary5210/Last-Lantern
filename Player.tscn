@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_player_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player.png" id="2_player_tex"]
+[ext_resource type="Texture2D" path="res://assets/sprites/light_mask.png" id="3_light_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 1
+collision_mask = 10
+motion_mode = 1
+script = ExtResource("1_player_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_player_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.92, 0.75, 1)
+energy = 1.25
+texture = ExtResource("3_light_tex")
+texture_scale = 1.6
+
+[node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="HurtAudio" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(18, 0)

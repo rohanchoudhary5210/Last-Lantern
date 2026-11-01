@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MetaUpgradeData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/MetaUpgradeData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_damage.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_script")
+id = "damage"
+name = "Firepower"
+description = "+8% Weapon Damage per rank"
+stat_type = "damage"
+max_level = 5
+base_price = 20
+price_growth = 1.6
+bonus_per_level = 0.08
+icon = ExtResource("2_icon")

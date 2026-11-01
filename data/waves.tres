@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://data/WaveData.gd" id="1_wave_data"]
+[ext_resource type="Script" path="res://data/WaveRule.gd" id="2_wave_rule"]
+[ext_resource type="Resource" path="res://data/enemies/zombie_walker.tres" id="3_walker"]
+[ext_resource type="Resource" path="res://data/enemies/zombie_fast.tres" id="4_fast"]
+[ext_resource type="Resource" path="res://data/enemies/zombie_spitter.tres" id="5_spitter"]
+[ext_resource type="Resource" path="res://data/enemies/zombie_exploder.tres" id="6_exploder"]
+[ext_resource type="Resource" path="res://data/enemies/zombie_charger.tres" id="7_charger"]
+[ext_resource type="Resource" path="res://data/enemies/zombie_summoner.tres" id="8_summoner"]
+[ext_resource type="Resource" path="res://data/enemies/zombie_ghost.tres" id="9_ghost"]
+[ext_resource type="Resource" path="res://data/enemies/zombie_tank.tres" id="10_tank"]
+[ext_resource type="Resource" path="res://data/enemies/zombie_boss.tres" id="11_boss"]
+
+[sub_resource type="Resource" id="Resource_walker"]
+script = ExtResource("2_wave_rule")
+enemy_id = "walker"
+enemy_data = ExtResource("3_walker")
+start_second = 0.0
+spawn_interval = 1.6
+weight = 1.0
+
+[sub_resource type="Resource" id="Resource_fast"]
+script = ExtResource("2_wave_rule")
+enemy_id = "fast"
+enemy_data = ExtResource("4_fast")
+start_second = 30.0
+spawn_interval = 2.2
+weight = 0.8
+
+[sub_resource type="Resource" id="Resource_spitter"]
+script = ExtResource("2_wave_rule")
+enemy_id = "spitter"
+enemy_data = ExtResource("5_spitter")
+start_second = 60.0
+spawn_interval = 3.5
+weight = 0.6
+
+[sub_resource type="Resource" id="Resource_exploder"]
+script = ExtResource("2_wave_rule")
+enemy_id = "exploder"
+enemy_data = ExtResource("6_exploder")
+start_second = 90.0
+spawn_interval = 3.8
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_charger"]
+script = ExtResource("2_wave_rule")
+enemy_id = "charger"
+enemy_data = ExtResource("7_charger")
+start_second = 130.0
+spawn_interval = 4.5
+weight = 0.45
+
+[sub_resource type="Resource" id="Resource_summoner"]
+script = ExtResource("2_wave_rule")
+enemy_id = "summoner"
+enemy_data = ExtResource("8_summoner")
+start_second = 170.0
+spawn_interval = 6.5
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_ghost"]
+script = ExtResource("2_wave_rule")
+enemy_id = "ghost"
+enemy_data = ExtResource("9_ghost")
+start_second = 210.0
+spawn_interval = 4.0
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_tank"]
+script = ExtResource("2_wave_rule")
+enemy_id = "tank"
+enemy_data = ExtResource("10_tank")
+start_second = 250.0
+spawn_interval = 6.0
+weight = 0.3
+
+[resource]
+script = ExtResource("1_wave_data")
+rules = [SubResource("Resource_walker"), SubResource("Resource_fast"), SubResource("Resource_spitter"), SubResource("Resource_exploder"), SubResource("Resource_charger"), SubResource("Resource_summoner"), SubResource("Resource_ghost"), SubResource("Resource_tank")]
+boss_data = ExtResource("11_boss")
+boss_interval = 120.0
+boss_start_second = 120.0
+spawn_distance_min = 800.0
+spawn_distance_max = 950.0

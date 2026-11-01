@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EvolutionData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/EvolutionData.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/weapons/smg_evolved.tres" id="2_wep"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_evo_plasma.png" id="3_icon"]
+
+[resource]
+script = ExtResource("1_script")
+id = "evo_hyper_storm"
+name = "Hyper-Storm"
+description = "SMG Lv.5 + Rapid Trigger. Unleashes dual streams of ultra-fast plasma bolts."
+base_weapon_id = "smg"
+required_weapon_level = 5
+required_upgrade_id = "fire_rate"
+evolved_weapon = ExtResource("2_wep")
+icon = ExtResource("3_icon")

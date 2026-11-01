@@ -1,0 +1,826 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://UI.gd" id="1_ui_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/card_banner_bg.png" id="2_card_banner_bg"]
+[ext_resource type="Texture2D" path="res://assets/ui/joystick_base.png" id="3_joy_base"]
+[ext_resource type="Texture2D" path="res://assets/ui/joystick_knob.png" id="4_joy_knob"]
+
+[node name="UI" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_ui_script")
+card_bg_texture = ExtResource("2_card_banner_bg")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 130.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 10
+
+[node name="TopBox" type="VBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Row1" type="HBoxContainer" parent="HUD/MarginContainer/TopBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="KillsLabel" type="Label" parent="HUD/MarginContainer/TopBox/Row1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+text = "KILLS: 0"
+
+[node name="SoulsLabel" type="Label" parent="HUD/MarginContainer/TopBox/Row1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+text = "✦ 0"
+
+[node name="Spacer1" type="Control" parent="HUD/MarginContainer/TopBox/Row1"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TimeLabel" type="Label" parent="HUD/MarginContainer/TopBox/Row1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="HUD/MarginContainer/TopBox/Row1"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="AirdropLabel" type="Label" parent="HUD/MarginContainer/TopBox/Row1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.85, 1, 1)
+text = "CRATE: 30s"
+horizontal_alignment = 2
+
+[node name="PauseButton" type="Button" parent="HUD/MarginContainer/TopBox/Row1"]
+custom_minimum_size = Vector2(44, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "||"
+
+[node name="Row2" type="HBoxContainer" parent="HUD/MarginContainer/TopBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="HPContainer" type="HBoxContainer" parent="HUD/MarginContainer/TopBox/Row2"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="HPTitle" type="Label" parent="HUD/MarginContainer/TopBox/Row2/HPContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 1, 0.4, 1)
+text = "HP"
+
+[node name="HPProgressBar" type="ProgressBar" parent="HUD/MarginContainer/TopBox/Row2/HPContainer"]
+custom_minimum_size = Vector2(170, 18)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="HUD/MarginContainer/TopBox/Row2/HPContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "100 / 100"
+
+[node name="Spacer3" type="Control" parent="HUD/MarginContainer/TopBox/Row2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="WeaponBox" type="VBoxContainer" parent="HUD/MarginContainer/TopBox/Row2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="WeaponLabel" type="Label" parent="HUD/MarginContainer/TopBox/Row2/WeaponBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 15
+text = "[COMMON] PISTOL [LV 1/5]"
+horizontal_alignment = 2
+
+[node name="EvoProgressLabel" type="Label" parent="HUD/MarginContainer/TopBox/Row2/WeaponBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "EVO: Lvl 1/5 ✖ | Torch ✖"
+horizontal_alignment = 2
+
+[node name="PassivesRow" type="HBoxContainer" parent="HUD/MarginContainer/TopBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="DeckRow" type="HBoxContainer" parent="HUD/MarginContainer/TopBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="BossBarContainer" type="VBoxContainer" parent="HUD/MarginContainer/TopBox"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="BossNameLabel" type="Label" parent="HUD/MarginContainer/TopBox/BossBarContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.25, 0.35, 1)
+theme_override_font_sizes/font_size = 15
+text = "ABOMINATION (BOSS)"
+horizontal_alignment = 1
+
+[node name="BossProgressBar" type="ProgressBar" parent="HUD/MarginContainer/TopBox/BossBarContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+show_percentage = false
+
+[node name="CardRewardBanner" type="PanelContainer" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 140.0
+offset_right = 220.0
+offset_bottom = 220.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="HUD/CardRewardBanner"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="HBox" type="HBoxContainer" parent="HUD/CardRewardBanner/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RewardIcon" type="TextureRect" parent="HUD/CardRewardBanner/Margin/HBox"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="HUD/CardRewardBanner/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="RewardTag" type="Label" parent="HUD/CardRewardBanner/Margin/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_font_sizes/font_size = 14
+text = "✦ BOSS REWARD: CARD UNLOCKED! ✦"
+
+[node name="RewardName" type="Label" parent="HUD/CardRewardBanner/Margin/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "Card Name"
+
+[node name="RewardDesc" type="Label" parent="HUD/CardRewardBanner/Margin/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 14
+text = "+10% Weapon Damage"
+
+[node name="CurseBanner" type="PanelContainer" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 135.0
+offset_right = 240.0
+offset_bottom = 205.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="HUD/CurseBanner"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="HUD/CurseBanner/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="CurseTitle" type="Label" parent="HUD/CurseBanner/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.45, 0.35, 1)
+theme_override_font_sizes/font_size = 14
+text = "⚡ DAILY CURSE ACTIVE: SOLAR ECLIPSE"
+horizontal_alignment = 1
+
+[node name="CurseDesc" type="Label" parent="HUD/CurseBanner/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "-35% Torch Radius, but +100% Souls Harvested"
+horizontal_alignment = 1
+
+[node name="HintBanner" type="PanelContainer" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -180.0
+offset_right = 260.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="HUD/HintBanner"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 8
+
+[node name="HintLabel" type="Label" parent="HUD/HintBanner/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.35, 1)
+theme_override_font_sizes/font_size = 14
+text = "🕹 MOVE: Use WASD / Arrow Keys or touch joystick"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="JoystickZone" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_top = 0.3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="JoystickBase" type="TextureRect" parent="HUD/JoystickZone"]
+visible = false
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("3_joy_base")
+expand_mode = 1
+
+[node name="JoystickKnob" type="TextureRect" parent="HUD/JoystickZone/JoystickBase"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 96.0
+pivot_offset = Vector2(32, 32)
+mouse_filter = 2
+texture = ExtResource("4_joy_knob")
+expand_mode = 1
+
+[node name="HeroSelectModal" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="HeroSelectModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.06, 0.94)
+
+[node name="CenterContainer" type="CenterContainer" parent="HeroSelectModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="HeroSelectModal/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="HeroSelectModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "CHOOSE YOUR SURVIVOR"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="HeroSelectModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.9, 1)
+text = "Select a survivor to venture into the night:"
+horizontal_alignment = 1
+
+[node name="DeckBar" type="PanelContainer" parent="HeroSelectModal/CenterContainer/VBox"]
+custom_minimum_size = Vector2(600, 64)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="HeroSelectModal/CenterContainer/VBox/DeckBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="HBox" type="HBoxContainer" parent="HeroSelectModal/CenterContainer/VBox/DeckBar/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="DeckLabel" type="Label" parent="HeroSelectModal/CenterContainer/VBox/DeckBar/Margin/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.45, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "EQUIPPED DECK (0/3):"
+
+[node name="DeckSlotsRow" type="HBoxContainer" parent="HeroSelectModal/CenterContainer/VBox/DeckBar/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ConfigureDeckBtn" type="Button" parent="HeroSelectModal/CenterContainer/VBox/DeckBar/Margin/HBox"]
+custom_minimum_size = Vector2(120, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "EDIT DECK"
+
+[node name="HeroCardsContainer" type="VBoxContainer" parent="HeroSelectModal/CenterContainer/VBox"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="DeckModal" type="Control" parent="HeroSelectModal"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="HeroSelectModal/DeckModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.06, 0.98)
+
+[node name="CenterContainer" type="CenterContainer" parent="HeroSelectModal/DeckModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DeckVBox" type="VBoxContainer" parent="HeroSelectModal/DeckModal/CenterContainer"]
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="DeckTitle" type="Label" parent="HeroSelectModal/DeckModal/CenterContainer/DeckVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.45, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "EQUIPPED RUN DECK"
+horizontal_alignment = 1
+
+[node name="DeckSubtitle" type="Label" parent="HeroSelectModal/DeckModal/CenterContainer/DeckVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.95, 1)
+theme_override_font_sizes/font_size = 14
+text = "Choose up to 3 cards from your collection to empower your run:"
+horizontal_alignment = 1
+
+[node name="DeckActiveCount" type="Label" parent="HeroSelectModal/DeckModal/CenterContainer/DeckVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_font_sizes/font_size = 16
+text = "Equipped Cards: 0 / 3"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HeroSelectModal/DeckModal/CenterContainer/DeckVBox"]
+custom_minimum_size = Vector2(620, 480)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="CardsContainer" type="VBoxContainer" parent="HeroSelectModal/DeckModal/CenterContainer/DeckVBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="DeckDoneBtn" type="Button" parent="HeroSelectModal/DeckModal/CenterContainer/DeckVBox"]
+custom_minimum_size = Vector2(220, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "CONFIRM DECK"
+
+[node name="UpgradeModal" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="UpgradeModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.05, 0.88)
+
+[node name="CenterContainer" type="CenterContainer" parent="UpgradeModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="UpgradeModal/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="UpgradeModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "AIRDROP OPENED"
+horizontal_alignment = 1
+
+[node name="WeaponUpgradeNotice" type="Label" parent="UpgradeModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 20
+text = "WEAPON UPGRADED: SMG"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="UpgradeModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.9, 1)
+text = "Choose 1 enhancement for your survivor:"
+horizontal_alignment = 1
+
+[node name="CardsContainer" type="VBoxContainer" parent="UpgradeModal/CenterContainer/VBox"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="PauseModal" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="PauseModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.05, 0.9)
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="PauseModal/CenterContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="PauseModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="PauseCurseLabel" type="Label" parent="PauseModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.55, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "⚡ ACTIVE CURSE: Solar Eclipse (-35% Torch, +100% Souls)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PauseModal/CenterContainer/VBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "RESUME"
+
+[node name="PauseSettingsButton" type="Button" parent="PauseModal/CenterContainer/VBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "SETTINGS"
+
+[node name="RestartButton" type="Button" parent="PauseModal/CenterContainer/VBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "RESTART"
+
+[node name="MainMenuButton" type="Button" parent="PauseModal/CenterContainer/VBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "MAIN MENU"
+
+[node name="SettingsModal" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="SettingsModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.03, 0.05, 0.94)
+
+[node name="CenterContainer" type="CenterContainer" parent="SettingsModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="SettingsModal/CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="SettingsModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "AUDIO SETTINGS"
+horizontal_alignment = 1
+
+[node name="MusicBox" type="VBoxContainer" parent="SettingsModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="MusicLabel" type="Label" parent="SettingsModal/CenterContainer/VBox/MusicBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 16
+text = "MUSIC VOLUME: 50%"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsModal/CenterContainer/VBox/MusicBox"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="SFXBox" type="VBoxContainer" parent="SettingsModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SFXLabel" type="Label" parent="SettingsModal/CenterContainer/VBox/SFXBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 16
+text = "SFX VOLUME: 100%"
+
+[node name="SFXSlider" type="HSlider" parent="SettingsModal/CenterContainer/VBox/SFXBox"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SettingsCloseBtn" type="Button" parent="SettingsModal/CenterContainer/VBox"]
+custom_minimum_size = Vector2(160, 46)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 17
+text = "CLOSE"
+
+[node name="GameOverModal" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="GameOverModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.01, 0.01, 0.92)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="GameOverModal/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="GameOverModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 32
+text = "THE LANTERN HAS FADED"
+horizontal_alignment = 1
+
+[node name="NewBestTimeLabel" type="Label" parent="GameOverModal/CenterContainer/VBox"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 18
+text = "★ NEW BEST SURVIVAL TIME! ★"
+horizontal_alignment = 1
+
+[node name="NewBestKillsLabel" type="Label" parent="GameOverModal/CenterContainer/VBox"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 18
+text = "★ NEW BEST KILL RECORD! ★"
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="GameOverModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+text = "TIME SURVIVED: 00:00\nZOMBIES SLAIN: 0\nFINAL WEAPON: PISTOL"
+horizontal_alignment = 1
+
+[node name="ButtonRow" type="HBoxContainer" parent="GameOverModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="GameOverModal/CenterContainer/VBox/ButtonRow"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "RETRY"
+
+[node name="GameOverMenuButton" type="Button" parent="GameOverModal/CenterContainer/VBox/ButtonRow"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "MAIN MENU"
+
+[node name="WinModal" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="WinModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.04, 0.08, 0.94)
+
+[node name="CenterContainer" type="CenterContainer" parent="WinModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="WinModal/CenterContainer"]
+custom_minimum_size = Vector2(540, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="WinModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_font_sizes/font_size = 36
+text = "✦ DAWN BREAKS ✦"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="WinModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "You survived 5 minutes until sunrise!"
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="WinModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "TIME SURVIVED: 05:00\nZOMBIES SLAIN: 0\nSOULS HARVESTED: 0 (+50 DAWN BONUS!)"
+horizontal_alignment = 1
+
+[node name="ButtonRow" type="HBoxContainer" parent="WinModal/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="WinModal/CenterContainer/VBox/ButtonRow"]
+custom_minimum_size = Vector2(200, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "CONTINUE RUN"
+
+[node name="WinMenuButton" type="Button" parent="WinModal/CenterContainer/VBox/ButtonRow"]
+custom_minimum_size = Vector2(180, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "MAIN MENU"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/EnemyData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/zombie_fast.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/audio/zombie_die.wav" id="3_sound"]
+
+[resource]
+script = ExtResource("1_script")
+id = "fast"
+name = "Runner"
+damage = 12.0
+fire_rate = 0.8
+speed = 150.0
+hp = 22.0
+score_value = 15
+soul_value = 2
+sprite = ExtResource("2_sprite")
+sound = ExtResource("3_sound")

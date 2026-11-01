@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/PlayerData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/audio/hit.wav" id="3_sound"]
+
+[resource]
+script = ExtResource("1_script")
+name = "Survivor"
+damage = 1.0
+fire_rate = 1.0
+speed = 210.0
+hp = 100.0
+torch_radius = 1.0
+sprite = ExtResource("2_sprite")
+sound = ExtResource("3_sound")

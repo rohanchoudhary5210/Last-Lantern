@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://oijkve1mj7qs"]
+
+[ext_resource type="Script" uid="uid://cs4bi6ml2jef6" path="res://Main.gd" id="1_main_script"]
+[ext_resource type="Texture2D" uid="uid://dl2ud5h3g2ts1" path="res://assets/sprites/ground_tile.png" id="2_ground_tex"]
+[ext_resource type="PackedScene" path="res://Player.tscn" id="3_player_scene"]
+[ext_resource type="PackedScene" path="res://UI.tscn" id="4_ui_scene"]
+[ext_resource type="AudioStream" uid="uid://dvuiwc6pgamdx" path="res://assets/audio/music.ogg" id="5_music"]
+[ext_resource type="PackedScene" path="res://DebugPanel.tscn" id="6_debug_panel"]
+
+[node name="Main" type="Node2D" unique_id=210755314]
+script = ExtResource("1_main_script")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1538418262]
+color = Color(0.03, 0.03, 0.05, 1)
+
+[node name="Ground" type="Sprite2D" parent="." unique_id=1679418059]
+texture_repeat = 2
+position = Vector2(-7, 26)
+texture = ExtResource("2_ground_tex")
+region_enabled = true
+region_rect = Rect2(-3000, -3000, 6000, 6000)
+
+[node name="Entities" type="Node2D" parent="." unique_id=414308971]
+
+[node name="Crates" type="Node2D" parent="Entities" unique_id=1758266428]
+
+[node name="Souls" type="Node2D" parent="Entities"]
+
+[node name="Bullets" type="Node2D" parent="Entities" unique_id=969814736]
+
+[node name="Zombies" type="Node2D" parent="Entities" unique_id=1815175734]
+
+[node name="Player" parent="Entities" unique_id=52915241 instance=ExtResource("3_player_scene")]
+
+[node name="Camera2D" type="Camera2D" parent="Entities/Player" unique_id=1820358492]
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="ZombieSpawnTimer" type="Timer" parent="." unique_id=975213341]
+wait_time = 1.8
+autostart = true
+
+[node name="AirdropTimer" type="Timer" parent="." unique_id=105836211]
+wait_time = 30.0
+autostart = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1135765708]
+stream = ExtResource("5_music")
+autoplay = true
+bus = &"Music"
+
+[node name="UI" parent="." unique_id=240667075 instance=ExtResource("4_ui_scene")]
+
+[node name="DebugPanel" parent="." instance=ExtResource("6_debug_panel")]

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CurseData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/CurseData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "curse_ironclad"
+name = "Ironclad Horde"
+description = "+35% Zombie Health, but Survivor deals +30% Bullet Damage"
+flavor = "The walking dead calcify with demonic bone armor, but your munitions strike with piercing fury."
+torch_radius_mult = 1.0
+soul_gain_mult = 0.0
+zombie_speed_mult = 1.0
+zombie_hp_mult = 1.35
+zombie_damage_mult = 1.0
+airdrop_interval_mult = 1.0
+player_damage_mult = 0.3
+player_speed_mult = 0.0
+player_hp_mult = 1.0

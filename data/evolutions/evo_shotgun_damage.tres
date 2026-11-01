@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EvolutionData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/EvolutionData.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/weapons/shotgun_evolved.tres" id="2_wep"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_evo_doom.png" id="3_icon"]
+
+[resource]
+script = ExtResource("1_script")
+id = "evo_doom_cannon"
+name = "Doom Cannon"
+description = "Shotgun Lv.5 + Hollow-Point. Fires a devastating 9-pellet spread of molten flak shards."
+base_weapon_id = "shotgun"
+required_weapon_level = 5
+required_upgrade_id = "damage"
+evolved_weapon = ExtResource("2_wep")
+icon = ExtResource("3_icon")

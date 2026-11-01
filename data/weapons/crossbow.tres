@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://data/WeaponData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bullet_bolt.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/audio/shoot_crossbow.wav" id="3_sound"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_crossbow.png" id="4_icon"]
+
+[resource]
+script = ExtResource("1_script")
+id = "crossbow"
+name = "Crossbow"
+damage = 95.0
+fire_rate = 0.85
+speed = 880.0
+hp = 0.0
+spread_angle = 0.0
+pellets = 1
+pierce = 5
+bullet_color = Color(0.2, 0.9, 1, 1)
+sprite = ExtResource("2_sprite")
+sound = ExtResource("3_sound")
+card_icon = ExtResource("4_icon")
+max_level = 5
+damage_per_level = 28.0
+fire_rate_per_level = 0.15
+pellets_per_level = 0
+pierce_per_level = 1
+is_evolved = false
+evolution_id = ""
+bullet_lifetime = 1.8
+is_flame = false
+is_bolt = true
+bolt_stick_duration = 0.5
+is_grenade = false
+explosion_radius = 125.0
+arc_height = 50.0

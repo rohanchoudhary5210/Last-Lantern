@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CurseData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/CurseData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = "curse_bloodmoon"
+name = "Blood Moon"
+description = "+25% Zombie Movement Speed, but Airdrops arrive 40% faster"
+flavor = "The undead hunger wildly beneath the scarlet moon, while emergency supply lines surge."
+torch_radius_mult = 1.0
+soul_gain_mult = 0.0
+zombie_speed_mult = 1.25
+zombie_hp_mult = 1.0
+zombie_damage_mult = 1.0
+airdrop_interval_mult = 0.6
+player_damage_mult = 0.0
+player_speed_mult = 0.0
+player_hp_mult = 1.0

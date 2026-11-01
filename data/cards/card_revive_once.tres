@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/CardData.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/card_icons/revive_once.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_script")
+id = "revive_once"
+name = "Phoenix Feathers"
+description = "+1 Free Second Chance Revive at start"
+rarity = "Epic"
+icon = ExtResource("2_icon")
+stat_modifiers = {
+"revive_once": 1.0
+}
+max_level = 5
